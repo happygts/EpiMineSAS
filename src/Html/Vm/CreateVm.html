@@ -8,15 +8,14 @@
 
     <title>INSPINIA | Wizards</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../../css/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -33,12 +32,16 @@
                             <li ><a href="Cours.html">Cours</a></li>
                             <li ><a href="Folder.html">Folder</a></li>
                         </ul>
-                    </li> 
+                    </li>
                     <li>
                         <a href="irc.html"><i class="fa fa-flask"></i> <span class="nav-label">IRC</span> </a>
                     </li>
                      <li class="active">
-                        <a href="vm.html" class="active"><i class="fa fa-flask"></i> <span class="nav-label">Virual Machines</span> </a>
+                        <a href="ListVm.html"><i class="fa fa-th-large"></i> <span class="nav-label">Vm</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li ><a href="ListVm.html">List all vm</a></li>
+                            <li ><a href="CreateVm.html">Create vm</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -65,16 +68,16 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Wizard</h2>
+                    <h2>Vm</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">Home</a>
                         </li>
                         <li>
-                            <a>Forms</a>
+                            <a>Vm</a>
                         </li>
                         <li class="active">
-                            <strong>Wizard</strong>
+                            <strong>Create vm</strong>
                         </li>
                     </ol>
                 </div>
@@ -87,7 +90,7 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Basic Wizzard</h5>
+                        <h5>Create Vm</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -106,42 +109,90 @@
                             </a>
                         </div>
                     </div>
-                    <div class="ibox-content">
-                        <p>
-                            This is basic example of Step
-                        </p>
+                    <div class="ibox-content" style="height: 400px">
                         <div id="wizard" >
                             <h1>Select Os</h1>
-                            <div class="step-content">
+                            <div class="step-content" >
                                 <div class="text-center m-t-md">
-                                <h2>Select the os you want to use</h2>
-                                <h2>Select the os you want to use</h2>
-                                <h2>Select the os you want to use</h2>
-                                <h2>Select the os you want to use</h2>
-                                <h2>Select the os you want to use</h2>
-                                <h2>Select the os you want to use</h2>
-                                <h2>Select the os you want to use</h2>
-                                
+                                    <h2>Select the os you want to use</h2>
+                                    <br>
+                                    <form role="form">
+                                    <div class="row">
+                                        <input style="display: inline-block;" type="radio" name="os" value="Bsd">
+                                        <label>Bsd</label>
+                                    </div>
+                                    <div class="row">
+                                        <input style="display: inline-block;" type="radio" name="os" value="Windows">
+                                        <label>Windows</label>
+                                    </div>
+                                    <div class="row">
+                                        <input style="display: inline-block;" type="radio" name="os" value="linux">
+                                        <label>linux</label>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
-                            <h1>Second Step</h1>
+                            <h1>Option</h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                    <h2>This is step 2</h2>
-                                    <p>
-                                        This content is diferent than the first one.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <h1>Third Step</h1>
-                            <div class="step-content">
-                                <div class="text-center m-t-md">
-                                    <h2>This is step 3</h2>
-                                    <p>
-                                        This is last content.
-                                    </p>
+                                    <h2>Chose option of the vm</h2>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h3>Ram</h3>
+                                            <br>
+                                            <form role="form">
+                                                <div class="row">
+                                                    <input style="display: inline-block;" type="radio" name="ram" value="Option1">
+                                                    <label>Option1</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input style="display: inline-block;" type="radio" name="ram" value="Option2">
+                                                    <label>Option2</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input style="display: inline-block;" type="radio" name="ram" value="Option3">
+                                                    <label>Option3</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3>Core</h3>
+                                            <br>
+                                            <form role="form">
+                                                <div class="row">
+                                                    <input style="display: inline-block;" type="radio" name="Core" value="Option1">
+                                                    <label>Option1</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input style="display: inline-block;" type="radio" name="Core" value="Option2">
+                                                    <label>Option2</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input style="display: inline-block;" type="radio" name="Core" value="Option3">
+                                                    <label>Option3</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3>Hardware</h3>
+                                            <br>
+                                            <form role="form">
+                                                <div class="row">
+                                                        <input style="display: inline-block;" type="radio" name="Hardware" value="Option1">
+                                                        <label>Option1</label>
+                                                </div>
+                                                <div class="row">
+                                                        <input style="display: inline-block;" type="radio" name="Hardware" value="Option2">
+                                                        <label>Option2</label>
+                                                </div>
+                                                <div class="row">
+                                                        <input style="display: inline-block;" type="radio" name="Hardware" value="Option3">
+                                                        <label>Option3</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -151,11 +202,8 @@
             </div>
             </div>
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
+                <strong>Copyright</strong> C'est nous.
             </div>
         </div>
 
@@ -165,20 +213,20 @@
 
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../../js/jquery-2.1.1.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="../../js/inspinia.js"></script>
+    <script src="../../js/plugins/pace/pace.min.js"></script>
 
     <!-- Steps -->
-    <script src="js/plugins/staps/jquery.steps.min.js"></script>
+    <script src="../../js/plugins/staps/jquery.steps.min.js"></script>
 
     <!-- Jquery Validate -->
-    <script src="js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="../../js/plugins/validate/jquery.validate.min.js"></script>
 
 
     <script>
