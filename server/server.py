@@ -1,6 +1,6 @@
 import json
 import ConfigParser
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 """config = ConfigParser.ConfigParser()
 config.read('config.ini')
@@ -86,6 +86,26 @@ def check_params_json(json, keys):
 
 # ALL
 
+
+@app.route('/register', methods=['GET'])
+def get_register():
+    return render_template('register.html')
+
+@app.route('/index', methods=['GET'])
+def get_index():
+    return render_template('index.html')
+
+@app.route('/login', methods=['GET'])
+def get_login():
+    return render_template('login.html')
+
+@app.route('/ListVm', methods=['GET'])
+def get_listvm():
+    return render_template('ListVm.html')
+
+@app.route('/CreateVm', methods=['GET'])
+def get_createvm():
+    return render_template('CreateVm.html')
 
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
