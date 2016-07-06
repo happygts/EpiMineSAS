@@ -122,7 +122,7 @@ def get_list_group_doc():
             }
         ]
       }
-    ];
+    ]}
     print(inputs)
     print(res)
     return json.dumps(res)
