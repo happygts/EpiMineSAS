@@ -74,6 +74,8 @@ def check_params(args, keys):
 def check_params_json(json, keys):
     res = {}
 
+    if json is None:
+        raise InvalidUsage('Error no inputs')
     for key in keys:
         if key not in json:
             raise InvalidUsage('Error key: %s not found' % key)
@@ -190,7 +192,7 @@ def post_change_vm():
 
 
 def main(args=None):
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)
 
 
 if __name__ == '__main__':
