@@ -97,24 +97,24 @@
                             </div>
                             <div class="project-list">
                                 <table class="table table-hover">
-                                    <tbody>
-                                    <tr>
-                                        <td class="project-status">
-                                            <span class="label label-primary">Active</span>
-                                        </td>
-                                        <td class="project-title">
-                                            <h3>Vm 1</h3>
-                                            <br/>
-                                            <small>Created 14.07.2016</small>
-                                        </td>
-                                        <td class="project-completion">
-                                                <h3>Ip :</h3>
-                                                <h2>230.14.52.12</h2>
-                                        </td>
-                                        <td class="project-actions">
-                                            <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
-                                        </td>
-                                    </tr>                                    
+                                    <tbody id="tabVm">
+                                        <tr>
+                                            <td class="project-status">
+                                                <span class="label label-primary">Active</span>
+                                            </td>
+                                            <td class="project-title">
+                                                <h3>Vm 1</h3>
+                                                <br/>
+                                                <small>Created 14.07.2016</small>
+                                            </td>
+                                            <td class="project-completion">
+                                                    <h3>Ip :</h3>
+                                                    <h2>230.14.52.12</h2>
+                                            </td>
+                                            <td class="project-actions">
+                                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                                            </td>
+                                        </tr>                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -147,12 +147,36 @@
 
             $('#loading-example-btn').click(function () {
                 btn = $(this);
+                var tab = $("#tabVm");
+                tab.empty();
                 simpleLoad(btn, true)
 
                 // Ajax example
 //                $.ajax().always(function () {
 //                    simpleLoad($(this), false)
 //                });
+                var ip = "230.14.52.13";
+                var date = "14.07.2016";
+                var name = "Vm 1";
+                var active = "Active";
+                var template = '<tr>' +
+                                    '<td class="project-status">' +
+                                        '<span class="label label-primary">' + active + '</span>' +
+                                    '</td>' +
+                                    '<td class="project-title">' +
+                                        '<h3>' + name + '</h3>' +
+                                        '<br/>' +
+                                        '<small>Created ' + date + '</small>' +
+                                    '</td>' +
+                                    '<td class="project-completion">' +
+                                            '<h3>Ip :</h3>' +
+                                            '<h2>' + ip + '</h2>' +
+                                    '</td>' +
+                                    '<td class="project-actions">' +
+                                        '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>' +
+                                    '</td>' +
+                                '</tr>';
+                tab.append(template);
 
                 simpleLoad(btn, false)
             });
