@@ -90,7 +90,41 @@ def check_params_json(json, keys):
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
     inputs = check_params(request.args, ['token'])
-    res = {'tree': 'NONE'}
+
+    res = { 'tree' : [{
+        'type' : "folder",
+        'name': "animals",
+        'children': [
+            {
+                'type': "folder",
+                'name': "cat",
+                'children': [
+                    {
+                        'type': "folder",
+                        'name': "images",
+                        'children': [
+                            {
+                            'type': "file",
+                            'name': "file1",
+                            }, {
+                            'type': "file",
+                            'name': "file2",
+                            }
+                        ]
+                    },
+                    {
+                        'type': "file",
+                        'name': "file3",
+                    }
+                ]
+            },
+            {
+                'type': "file",
+                'name': "file4",
+            }
+        ]
+      }
+    ]}
     print(inputs)
     print(res)
     return json.dumps(res)
