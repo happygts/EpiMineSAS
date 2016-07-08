@@ -89,7 +89,7 @@ def check_params_json(json, keys):
 
 @app.route('/courses', methods=['GET'])
 def courses():
-    return render_template('Cours.html')
+    return render_template('courses.html')
 
 @app.route('/folder', methods=['GET'])
 def folder():
