@@ -145,7 +145,7 @@
         httpGet('http://127.0.0.1:5000/list_group_doc?' + encodeQueryData({'token': 'test'}), init);
 
         function init(data) {
-            //var data = JSON.parse(this.responseText);
+            var data = JSON.parse(data);
             console.log(data);
         };
 
