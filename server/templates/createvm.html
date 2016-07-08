@@ -8,12 +8,12 @@
 
     <title>INSPINIA | Wizards</title>
 
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../../css/plugins/steps/jquery.steps.css" rel="stylesheet">
-    <link href="../../css/animate.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -27,20 +27,20 @@
                         </div>
                     </li>
                     <li>
-                        <a href="../index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Lessons</span> <span class="fa arrow"></span></a>
+                        <a href="{{ url_for('index') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Lessons</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li ><a href="Cours.html">Cours</a></li>
-                            <li ><a href="../Folder/folder.html">Folder</a></li>
+                            <li ><a href="{{ url_for('courses') }}">Cours</a></li>
+                            <li ><a href="{{ url_for('folder') }}">Folder</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="irc.html"><i class="fa fa-flask"></i> <span class="nav-label">IRC</span> </a>
+                        <a href="{{ url_for('irc') }}"><i class="fa fa-flask"></i> <span class="nav-label">IRC</span> </a>
                     </li>
                      <li class="active">
-                        <a href="ListVm.html"><i class="fa fa-th-large"></i> <span class="nav-label">Vm</span> <span class="fa arrow"></span></a>
+                        <a href="{{ url_for('listvm') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Vm</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li ><a href="ListVm.html">List all vm</a></li>
-                            <li class="active"><a href="CreateVm.html">Create vm</a></li>
+                            <li ><a href="{{ url_for('listvm') }}">List all vm</a></li>
+                            <li class="active"><a href="{{ url_for('createvm') }}">Create vm</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -58,7 +58,7 @@
                 <span class="m-r-sm text-muted welcome-message">Welcome to SAS</span>
             </li>
             <li>
-                <a href="login.html">
+                <a href="{{ url_for('login') }}">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
@@ -71,7 +71,7 @@
                     <h2>Create Vm</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="{{ url_for('index') }}">Home</a>
                         </li>
                         <li>
                             <a>Vm</a>
@@ -213,20 +213,20 @@
 
 
     <!-- Mainly scripts -->
-    <script src="../../js/jquery-2.1.1.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="../../js/inspinia.js"></script>
-    <script src="../../js/plugins/pace/pace.min.js"></script>
+    <script src="{{ url_for('static', filename='js/inspinia.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/pace/pace.min.js') }}"></script>
 
     <!-- Steps -->
-    <script src="../../js/plugins/staps/jquery.steps.min.js"></script>
+    <script src="{{ url_for('static', filename='js/plugins/staps/jquery.steps.min.js') }}"></script>
 
     <!-- Jquery Validate -->
-    <script src="../../js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="{{ url_for('static', filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
 
 
     <script>

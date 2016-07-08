@@ -33,20 +33,20 @@
                         </div>
                     </li>
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Lessons</span> <span class="fa arrow"></span></a>
+                        <a href="{{ url_for('index') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Lessons</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="Cours.html">Cours</a></li>
-                            <li ><a href="Folder/folder.html">Folder</a></li>
+                            <li class="active"><a href="{{ url_for('courses') }}">Cours</a></li>
+                            <li ><a href="{{ url_for('folder') }}">Folder</a></li>
                         </ul>
                     </li> 
                     <li>
-                        <a href="irc.html"><i class="fa fa-flask"></i> <span class="nav-label">IRC</span> </a>
+                        <a href="{{ url_for('irc') }}"><i class="fa fa-flask"></i> <span class="nav-label">IRC</span> </a>
                     </li>
                      <li>
-                        <a href="ListVm.html"><i class="fa fa-th-large"></i> <span class="nav-label">Vm</span> <span class="fa arrow"></span></a>
+                        <a href="{{ url_for('listvm') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Vm</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li ><a href="Vm/ListVm.html">List all vm</a></li>
-                            <li ><a href="Vm/CreateVm.html">Create vm</a></li>
+                            <li ><a href="{{ url_for('listvm') }}">List all vm</a></li>
+                            <li ><a href="{{ url_for('createvm') }}">Create vm</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -64,7 +64,7 @@
                     <span class="m-r-sm text-muted welcome-message">Welcome to SAS</span>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href="{{ url_for('login') }}">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
