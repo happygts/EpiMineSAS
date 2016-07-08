@@ -1,21 +1,31 @@
 function httpPost(url, data, callback)
 {
-    var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.open("POST", url, true);
-    xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xmlHttp.send(JSON.stringify(data));
-    xmlHttp.onload = callback;
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function()
+    {
+        if (request.readyState == 4 && request.status == 200)
+        {
+            callback(request.responseText); // Another callback here
+        }
+    }; 
+    request.open("POST", url, true);
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.send(JSON.stringify(data));
 }
 
 
 function httpGet(url, callback)
 {
-    var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send();
-    xmlHttp.onload = callback;
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function()
+    {
+        if (request.readyState == 4 && request.status == 200)
+        {
+            callback(request.responseText); // Another callback here
+        }
+    }; 
+    request.open('GET', url);
+    request.send();
 }
 
 function encodeQueryData(data)

@@ -144,9 +144,9 @@
         var dictionaryFolder;
         httpGet('http://127.0.0.1:5000/list_group_doc?' + encodeQueryData({'token': 'test'}), init);
 
-        var init = function () {
+        function init(data) {
             //var data = JSON.parse(this.responseText);
-            alert(this.responseText);
+            console.log(data);
         };
 
         $('.file-box').each(function() {
