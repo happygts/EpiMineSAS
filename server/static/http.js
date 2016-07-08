@@ -1,5 +1,3 @@
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
 function httpPost(url, data, callback)
 {
     var xmlHttp = new XMLHttpRequest();

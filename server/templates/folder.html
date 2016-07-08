@@ -142,11 +142,11 @@
 <script>
     $(document).ready(function(){
         var dictionaryFolder;
-        httpGet("/list_group_doc", init);
+        httpGet('http://127.0.0.1:5000/list_group_doc?' + encodeQueryData({'token': 'test'}), init);
 
         var init = function () {
-            var data = JSON.parse(this.responseText);
-            alert(data);
+            //var data = JSON.parse(this.responseText);
+            alert(this.responseText);
         };
 
         $('.file-box').each(function() {
