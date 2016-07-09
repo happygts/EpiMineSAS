@@ -293,9 +293,16 @@ def post_change_auth():
 @app.route('/change_vm', methods=['POST'])
 def post_change_vm():
     inputs = check_params_json(request.get_json(), ['token', 'vm', 'status'])
+
+    if inputs['token'] in Test.vms and inputs['vm'] in Test.vms[inputs['token']]:
+        if Test.vms[inputs['token']][inputs['vm']] == '0':
+            cmd = ['sudo', 'docker', 'run', '-d', '-P', '--name',
+                   inputs['vm'], 'eg_sshd']
+            subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
+        else:
+            cmd = ['sudo', 'docker', 'stop', inputs['vm']]
+            subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
     res = {'status': 'ok'}
-    print(inputs)
-    print(res)
     return json.dumps(res)
 
 
