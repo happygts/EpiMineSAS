@@ -184,7 +184,6 @@
                         var actualName = e.data.name;
 
                         fillHtmlWithFolder(actualName);
-                        console.log("fillHtmlWithFolder : " + actualName);
                         $( "#backButton" ).unbind( "click", back );
                         $('#backButton').bind( "click",  {actualNameBackButton : actualName}, back);
                     });
@@ -194,9 +193,7 @@
 
          var back = function(e) {
             var actualName = e.data.actualNameBackButton;
-            console.log("getParentFolderByName of " + actualName);
             var parent = getParentFolderByName(actualName, tree);
-            console.log("Parent :", parent);
             if (parent != null) {
                 fillHtmlWithFolder(parent.name);
                 $("#backButton" ).unbind( "click", back );
@@ -205,7 +202,6 @@
          }
 
          function getFolderByName(name, actualTree) {
-
             if (actualTree.name == name && actualTree.type == "folder")
                 return actualTree;
 
@@ -227,7 +223,6 @@
             for (var i = childrensActualTree.length - 1; i >= 0; i--) {
                 if (childrensActualTree[i].name == name)
                 {
-                    console.log("actualTree to return : " + actualTree.name);
                     return (actualTree);
                 }
             }

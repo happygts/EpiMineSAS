@@ -165,14 +165,18 @@ def get_list_group_doc():
 @app.route('/list_vm', methods=['GET'])
 def get_list_vm():
     inputs = check_params(request.args, ['token'])
-    res = {'list_vm': [{'os': 'Linux',
+    res = {'list_vm': [{ 'ip': '230.14.52.13',
+                        'os': 'Linux',
                         'ram': '1',
                        'proc': '3',
-                        'hdd_size': '1'},
-                       {'os': 'BSD',
+                        'hdd_size': '1',
+                        'status' : '1'},
+                       {'ip': '270.41.10.18',
+                        'os': 'BSD',
                         'ram': '2',
                         'proc': '5',
-                        'hdd_size': '4'}]}
+                        'hdd_size': '4',
+                        'status' : '0'}]}
     print(inputs)
     print(res)
     return json.dumps(res)

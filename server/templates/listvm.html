@@ -142,6 +142,7 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='http.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
     <script src="{{ url_for('static', filename='js/inspinia.js') }}"></script>
@@ -149,55 +150,56 @@
 
     <script>
         $(document).ready(function(){
-
+            httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
             $('#loading-example-btn').click(function () {
-                btn = $(this);
+                httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
+            });
+
+            function refreshList(data) {
+                var listVm = JSON.parse(data).list_vm;
+                console.log(listVm);
+                btn = $('#loading-example-btn');
                 var tab = $("#tabVm");
                 tab.empty();
                 simpleLoad(btn, true)
 
-                // Ajax example
-//                $.ajax().always(function () {
-//                    simpleLoad($(this), false)
-//                });
-                var ip = "230.14.52.13";
-                var date = "14.07.2016";
-                var name = "Vm 1";
-                var active = "Active";
-                var template = '<tr>' +
-                                    '<td class="project-status">' +
-                                        '<span class="label label-primary">' + active + '</span>' +
-                                    '</td>' +
-                                    '<td class="project-title">' +
-                                        '<h3>' + name + '</h3>' +
-                                        '<br/>' +
-                                        '<small>Created ' + date + '</small>' +
-                                    '</td>' +
-                                    '<td class="project-completion">' +
-                                            '<h3>Ip :</h3>' +
-                                            '<h2>' + ip + '</h2>' +
-                                    '</td>' +
-                                    '<td class="project-actions">' +
-                                        '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>' +
-                                    '</td>' +
-                                '</tr>';
-                tab.append(template);
+                for (var i = listVm.length - 1; i >= 0; i--) {
+                    var ip = listVm[i].ip;
+                    var os = listVm[i].os;
+                    var active = listVm[i].status;
+                    var template = '<tr>' +
+                                        '<td class="project-status">' +
+                                            ((active == '1') ? ('<span class="label label-primary">Actived</span>') : ('<span class="label label-danger">Deactived</span>')) +
+                                        '</td>' +
+                                        '<td class="project-title">' +
+                                            '<h3>' + os + '</h3>' +
+                                        '</td>' +
+                                        '<td class="project-completion">' +
+                                                '<h3>Ip :</h3>' +
+                                                '<h2>' + ip + '</h2>' +
+                                        '</td>' +
+                                        '<td class="project-actions">' +
+                                            '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>' +
+                                        '</td>' +
+                                    '</tr>';
+                    tab.append(template);
+                }
 
                 simpleLoad(btn, false);
-            });
-        });
-
-        function simpleLoad(btn, state) {
-            if (state) {
-                btn.children().addClass('fa-spin');
-                btn.contents().last().replaceWith(" Loading");
-            } else {
-                setTimeout(function () {
-                    btn.children().removeClass('fa-spin');
-                    btn.contents().last().replaceWith(" Refresh");
-                }, 2000);
             }
-        }
+
+            function simpleLoad(btn, state) {
+                if (state) {
+                    btn.children().addClass('fa-spin');
+                    btn.contents().last().replaceWith(" Loading");
+                } else {
+                    setTimeout(function () {
+                        btn.children().removeClass('fa-spin');
+                        btn.contents().last().replaceWith(" Refresh");
+                    }, 1000);
+                }
+            }
+        });
     </script>
 </body>
 
