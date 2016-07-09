@@ -203,9 +203,9 @@ class Test(object):
 @app.route('/list_vm', methods=['GET'])
 def get_list_vm():
     inputs = check_params(request.args, ['token'])
-    res = {'list_vm': Test.vms[inputs['token']]}
-    print(inputs)
-    print(res)
+    res = {'list_vm': []}
+    if inputs['token'] in Test.vms:
+        res['list_vm'] = Test.vms[inputs['token']]
     return json.dumps(res)
 
 
@@ -231,9 +231,11 @@ def post_create_vm():
     cmd = ['sudo', 'docker', 'port', 'ubuntu_%d' % Test.i, '22']
     output = subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
     Test.i += 1
-    Test.vms[inputs['token']] = {'os': 'ubuntu_%d' % Test.i,
+    if inputs['token'] not in Test.vms:
+        Test.vms[inputs['token']] = []
+    Test.vms[inputs['token']].append({'os': 'ubuntu_%d' % Test.i,
                                 'ip':output,
-                                'status': 'launch'}
+                                'status': '1'})
                                 
     res = {'ip': output}
     return json.dumps(res)
