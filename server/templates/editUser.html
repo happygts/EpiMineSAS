@@ -147,9 +147,8 @@
             $("#logoutButton").on("click", function(){
                 logout();                
             });
-
-            var user = getUrlParameter('user');
-
+            var user = "{{ username }}"
+            console.log("User = " + user);
             $("#onEditUser").on("click", function() {
                 var password = $( "#inputPassword" ).val();
                 var passwordConfirmation = $( "#inputPassword" ).val();
