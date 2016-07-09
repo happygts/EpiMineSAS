@@ -119,6 +119,7 @@ def login():
 def createvm():
     return render_template('createvm.html')
 
+
 @app.route('/listvm', methods=['GET'])
 def listvm():
     return render_template('listvm.html')
@@ -126,6 +127,10 @@ def listvm():
 @app.route('/listuser', methods=['GET'])
 def listuser():
     return render_template('listUser.html')
+
+@app.route('/createuser', methods=['GET'])
+def createuser():
+    return render_template('createuser.html')
 
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
