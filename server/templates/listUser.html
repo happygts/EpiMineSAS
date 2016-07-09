@@ -35,14 +35,14 @@
                     <li>
                         <a href="{{ url_for('irc') }}"><i class="fa fa-flask"></i> <span class="nav-label">IRC</span> </a>
                     </li>
-                     <li class="active">
+                     <li >
                         <a href="{{ url_for('listvm') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Vm</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="{{ url_for('listvm') }}">List all vm</a></li>
+                            <li ><a href="{{ url_for('listvm') }}">List all vm</a></li>
                             <li ><a href="{{ url_for('createvm') }}">Create vm</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{{ url_for('listuser') }}"><i class="fa fa-flask"></i> <span class="nav-label">List user</span> </a>
                     </li>
                 </ul>
@@ -92,7 +92,7 @@
                 <div class="wrapper wrapper-content animated fadeInUp">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5>All vm assigned to this account</h5>
+                            <h5>All user</h5>
                             <div class="ibox-tools">
                                 <a href="{{ url_for('createvm') }}" class="btn btn-primary btn-xs">Create new vm</a>
                             </div>
@@ -186,6 +186,9 @@
                                         '<td class="project-completion">' +
                                                 '<h3>Ip :</h3>' +
                                                 '<h2>' + ip + '</h2>' +
+                                        '</td>' +
+                                        '<td class="project-actions">' +
+                                            '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>' +
                                         '</td>' +
                                     '</tr>';
                     tab.append(template);

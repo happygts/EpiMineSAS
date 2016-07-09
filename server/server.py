@@ -123,6 +123,10 @@ def createvm():
 def listvm():
     return render_template('listvm.html')
 
+@app.route('/listuser', methods=['GET'])
+def listuser():
+    return render_template('listUser.html')
+
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
     inputs = check_params(request.args, ['token'])
