@@ -42,6 +42,9 @@
                             <li class="active"><a href="createvm">Create vm</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{ url_for('listuser') }}"><i class="fa fa-flask"></i> <span class="nav-label">List user</span> </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -204,7 +207,7 @@
 
                 var ram = $( "#selectRam option:selected" ).text();
 
-                httpPost('http://127.0.0.1:5000/create_vm', {'token': 'test',
+                httpPost('http://127.0.0.1:5000/create_vm', {'token': sessionStorage.getItem("token"),
                          'os': os,
                          'ram': ram,
                          'proc': Coeur,

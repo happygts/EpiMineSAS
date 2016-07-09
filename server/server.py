@@ -123,17 +123,21 @@ def createvm():
 def listvm():
     return render_template('listvm.html')
 
+@app.route('/listuser', methods=['GET'])
+def listuser():
+    return render_template('listUser.html')
+
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
     inputs = check_params(request.args, ['token'])
 
     res = { 'tree' : [{
         'type' : "folder",
-        'name': "animals",
+        'name': "folder1",
         'children': [
             {
                 'type': "folder",
-                'name': "cat",
+                'name': "folder2",
                 'children': [
                     {
                         'type': "folder",
@@ -141,10 +145,23 @@ def get_list_group_doc():
                         'children': [
                             {
                             'type': "file",
-                            'name': "file1",
+                            'name': "image3",
                             }, {
                             'type': "file",
-                            'name': "file2",
+                            'name': "image4",
+                            }
+                        ]
+                    },
+                    {
+                        'type': "folder",
+                        'name': "images2",
+                        'children': [
+                            {
+                            'type': "file",
+                            'name': "image1",
+                            }, {
+                            'type': "file",
+                            'name': "image2",
                             }
                         ]
                     },
@@ -157,6 +174,18 @@ def get_list_group_doc():
             {
                 'type': "file",
                 'name': "file4",
+            },
+            {
+                'type': "file",
+                'name': "file5",
+            },
+            {
+                'type': "file",
+                'name': "file6",
+            },
+            {
+                'type': "file",
+                'name': "file7",
             }
         ]
       }
