@@ -48,3 +48,9 @@ function logout() {
     sessionStorage.removeItem("admin");
     window.location.href = 'login';
 }
+
+function verifyConnect() {
+    if (sessionStorage.getItem("email") == null) {
+         window.location.href = 'login';
+    }
+}

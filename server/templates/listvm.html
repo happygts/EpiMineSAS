@@ -149,6 +149,7 @@
     <script src="{{ url_for('static', filename='js/plugins/pace/pace.min.js') }}"></script>
 
     <script>
+        verifyConnect();
         $(document).ready(function(){
             httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
             $('#loading-example-btn').click(function () {
@@ -158,6 +159,7 @@
             $("#logoutButton").on("click", function(){
                 logout();                
             });
+
 
             function refreshList(data) {
                 var listVm = JSON.parse(data).list_vm;
