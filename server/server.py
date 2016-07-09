@@ -2,6 +2,7 @@ import json
 import ConfigParser
 import subprocess
 from flask import Flask, request, jsonify, render_template
+from script import connect, user_list, set_pwd, add_user
 
 import script
 
@@ -222,9 +223,13 @@ def get_list_vm():
 @app.route('/connect', methods=['POST'])
 def post_connect():
     inputs = check_params_json(request.get_json(), ['user', 'pwd'])
+<<<<<<< HEAD
+    res = connect(inputs['user'], inputs['pwd'])
+=======
     res = script.connect(inputs['user'], inputs['pwd'])
     print(inputs)
     print(res)
+>>>>>>> dd0d72373431400fd30a264fd70aec4795fe7dc2
     return json.dumps(res)
 
 
@@ -256,8 +261,7 @@ def get_list_accounts():
     inputs = check_params(request.args, ['token'])
     res = {'accounts': [{'name': 'test',
                          'type': 'user'}]}
-    print(inputs)
-    print(res)
+    # res = user_list()
     return json.dumps(res)
 
 
@@ -274,8 +278,7 @@ def get_auth():
 def post_change_pwd():
     inputs = check_params_json(request.get_json(), ['token', 'user', 'pwd'])
     res = {'status': 'ok'}
-    print(inputs)
-    print(res)
+    # res = set_pwd(inputs['user'], inputs['pwd'])
     return json.dumps(res)
 
 
@@ -283,8 +286,7 @@ def post_change_pwd():
 def post_create_account():
     inputs = check_params_json(request.get_json(), ['token', 'user', 'pwd'])
     res = {'status': 'ok'}
-    print(inputs)
-    print(res)
+    # add_user(inputs['user'], inputs['pwd'])
     return json.dumps(res)
 
 
