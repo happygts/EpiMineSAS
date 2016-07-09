@@ -121,6 +121,7 @@ def login():
 def createvm():
     return render_template('createvm.html')
 
+
 @app.route('/listvm', methods=['GET'])
 def listvm():
     return render_template('listvm.html')
@@ -128,6 +129,10 @@ def listvm():
 @app.route('/listuser', methods=['GET'])
 def listuser():
     return render_template('listUser.html')
+
+@app.route('/createuser', methods=['GET'])
+def createuser():
+    return render_template('createuser.html')
 
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
@@ -205,9 +210,9 @@ class Test(object):
 @app.route('/list_vm', methods=['GET'])
 def get_list_vm():
     inputs = check_params(request.args, ['token'])
-    res = {'list_vm': Test.vms[inputs['token']]}
-    print(inputs)
-    print(res)
+    res = {'list_vm': []}
+    if inputs['token'] in Test.vms:
+        res['list_vm'] = Test.vms[inputs['token']]
     return json.dumps(res)
 
 
@@ -231,9 +236,11 @@ def post_create_vm():
     cmd = ['sudo', 'docker', 'port', 'ubuntu_%d' % Test.i, '22']
     output = subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
     Test.i += 1
-    Test.vms[inputs['token']] = {'os': 'ubuntu_%d' % Test.i,
+    if inputs['token'] not in Test.vms:
+        Test.vms[inputs['token']] = []
+    Test.vms[inputs['token']].append({'os': 'ubuntu_%d' % Test.i,
                                 'ip':output,
-                                'status': 'launch'}
+                                'status': '1'})
                                 
     res = {'ip': output}
     return json.dumps(res)
@@ -291,9 +298,16 @@ def post_change_auth():
 @app.route('/change_vm', methods=['POST'])
 def post_change_vm():
     inputs = check_params_json(request.get_json(), ['token', 'vm', 'status'])
+
+    if inputs['token'] in Test.vms and inputs['vm'] in Test.vms[inputs['token']]:
+        if Test.vms[inputs['token']][inputs['vm']] == '0':
+            cmd = ['sudo', 'docker', 'run', '-d', '-P', '--name',
+                   inputs['vm'], 'eg_sshd']
+            subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
+        else:
+            cmd = ['sudo', 'docker', 'stop', inputs['vm']]
+            subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
     res = {'status': 'ok'}
-    print(inputs)
-    print(res)
     return json.dumps(res)
 
 
