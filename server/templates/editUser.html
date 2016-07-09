@@ -46,8 +46,7 @@
                         <a href="{{ url_for('listuser') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Users</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li ><a href="{{ url_for('listuser') }}">List users</a></li>
-                            <li  class="active"><a href="{{ url_for('createuser') }}">Create user</a></li>
-                            <li ><a href="{{ url_for('edituser') }}">Edit user</a></li>
+                            <li ><a href="{{ url_for('createuser') }}">Create user</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -75,7 +74,7 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Create User</h2>
+                    <h2>Edit User</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">Home</a>
@@ -84,7 +83,7 @@
                             <a>User</a>
                         </li>
                         <li class="active">
-                            <strong>Create user</strong>
+                            <strong>Edit user</strong>
                         </li>
                     </ol>
                 </div>
@@ -97,19 +96,19 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Create User</h5>                            
+                            <h5>Modify Password</h5>                            
                         </div>
                         <div class="ibox-content">
                             <form method="get" class="form-horizontal">
-                                <div class="form-group"><label class="col-lg-2 control-label">Username</label>
-                                    <div class="col-lg-10"><input id="inputUserName" placeholder="Username" class="form-control">
+                                <div class="form-group"><label class="col-lg-2 control-label">Password</label>
+                                    <div class="col-lg-10"><input type="password"  id="inputUserName" placeholder="Username" class="form-control">
                                     </div>
                                 </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Password</label>
-                                    <div class="col-lg-10"><input id="inputPassword" type="password" placeholder="Password" class="form-control"></div>
+                                <div class="form-group"><label class="col-lg-2 control-label">Confirm Password</label>
+                                    <div class="col-lg-10"><input type="password"  id="inputPassword" placeholder="Password" class="form-control"></div>
                                 </div>                                
                                 <div class="hr-line-dashed"></div>
-                                <a id="onCreateUser" class="btn btn-primary">Create</a>
+                                <a id="onEditUser" class="btn btn-primary">Edit</a>
                             </form>
                         </div>
                     </div>
@@ -149,21 +148,18 @@
                 logout();                
             });
 
-            $("#onCreateUser").on("click", function() {
-                var user = $( "#inputUserName" ).val();
+            var user = getUrlParameter('user');
+
+            $("#onEditUser").on("click", function() {
                 var password = $( "#inputPassword" ).val();
+                var passwordConfirmation = $( "#inputPassword" ).val();
                 
-                if (user != null && user != "" && password != null password != "")
-                    httpPost('http://127.0.0.1:5000/create_account', {'token': sessionStorage.getItem("token"), 'user': user, 'pwd': password}, EndCreateUser);
+                if (password == passwordConfirmation && password != null && password != "")
+                    httpPost('http://127.0.0.1:5000/change_pwd', {'token': sessionStorage.getItem("token"), 'user': user, 'pwd': password}, handleResponse);
+                else
+                    alert('Your two password must be the same');
             });
 
-            function EndCreateUser(data) {
-                var status = JSON.parse(data).status;
-                if (status == "ok")
-                    alert("User well created");
-                else
-                    alert("Error");
-            }
          });
      </script>
 </body>

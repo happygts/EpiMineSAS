@@ -47,7 +47,6 @@
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="{{ url_for('listuser') }}">List users</a></li>
                             <li ><a href="{{ url_for('createuser') }}">Create user</a></li>
-                            <li ><a href="{{ url_for('listuser') }}">Edit user</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -172,7 +171,7 @@
                                                 '<h2>' + type + '</h2>' +
                                         '</td>' +
                                         '<td class="project-actions">' +
-                                            '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>' +
+                                            '<a href="edituser/test" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>' +
                                         '</td>' +
                                     '</tr>';
                     tab.append(template);
