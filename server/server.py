@@ -1,5 +1,6 @@
 import json
 import ConfigParser
+import subprocess
 from flask import Flask, request, jsonify, render_template
 
 """config = ConfigParser.ConfigParser()
@@ -196,14 +197,21 @@ def post_connect():
     return json.dumps(res)
 
 
+class Test(object):
+    i = 0
+
 @app.route('/create_vm', methods=['POST'])
 def post_create_vm():
     inputs = check_params_json(request.get_json(), ['token', 'os',
                                                     'ram', 'proc',
                                                     'hdd_size'])
-    res = {'ip': '128.0.0.yolo'}
-    print(inputs)
-    print(res)
+    cmd = ['sudo', 'docker', 'run', '-d', '-P', '--name',
+           'ubuntu_%s' % Test.i, 'eg_sshd']
+    subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
+    cmd = ['sudo', 'docker', 'port', 'ubuntu_%d' % Test.i, '22']
+    output = subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
+    Test.i += 1
+    res = {'ip': output}
     return json.dumps(res)
 
 # ADMIN
