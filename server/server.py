@@ -166,21 +166,15 @@ def get_list_group_doc():
     return json.dumps(res)
 
 
+class Test(object):
+    i = 0
+    vms = {}
+
+
 @app.route('/list_vm', methods=['GET'])
 def get_list_vm():
     inputs = check_params(request.args, ['token'])
-    res = {'list_vm': [{ 'ip': '230.14.52.13',
-                        'os': 'Linux',
-                        'ram': '1',
-                       'proc': '3',
-                        'hdd_size': '1',
-                        'status' : '1'},
-                       {'ip': '270.41.10.18',
-                        'os': 'BSD',
-                        'ram': '2',
-                        'proc': '5',
-                        'hdd_size': '4',
-                        'status' : '0'}]}
+    res = {'list_vm': Test.vms[inputs['token']]}
     print(inputs)
     print(res)
     return json.dumps(res)
@@ -197,9 +191,6 @@ def post_connect():
     return json.dumps(res)
 
 
-class Test(object):
-    i = 0
-
 @app.route('/create_vm', methods=['POST'])
 def post_create_vm():
     inputs = check_params_json(request.get_json(), ['token', 'os',
@@ -211,6 +202,10 @@ def post_create_vm():
     cmd = ['sudo', 'docker', 'port', 'ubuntu_%d' % Test.i, '22']
     output = subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
     Test.i += 1
+    Test.vms[inputs['token']] = {'os': 'ubuntu_%d' % Test.i,
+                                'ip':output,
+                                'status': 'launch'}
+                                
     res = {'ip': output}
     return json.dumps(res)
 
