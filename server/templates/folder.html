@@ -88,7 +88,7 @@
                         <div class="ibox-content">
                             <div class="file-manager">
                                 <h5>Folders</h5>
-                                <ul class="folder-list" style="padding: 0">
+                                <ul id="folder" class="folder-list" style="padding: 0">
                                     <li><a href=""><i class="fa fa-folder"></i> Dossier 1</a></li>
                                 </ul>
                                 <button id="backButton" type="button" class="btn btn-w-m btn-default">Back</button>
@@ -99,23 +99,7 @@
                 </div>
                 <div class="col-lg-9 animated fadeInRight">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="file-box">
-                                <div class="file">
-                                    <a href="#">
-                                        <span class="corner"></span>
-
-                                        <div class="icon">
-                                            <i class="fa fa-file"></i>
-                                        </div>
-                                        <div class="file-name">
-                                            Document_2014.doc                                            
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>                            
-                        </div>
+                        <div id="file" class="col-lg-12"></div>
                     </div>
                 </div>
             </div>
@@ -142,12 +126,122 @@
 <script>
     $(document).ready(function(){
         var dictionaryFolder;
+        var tree;
+
         httpGet('http://127.0.0.1:5000/list_group_doc?' + encodeQueryData({'token': 'test'}), init);
 
         function init(data) {
-            var data = JSON.parse(data);
-            console.log(data);
-        };
+            tree = JSON.parse(data).tree[0];
+
+            if (fillHtmlWithFolder(tree.name) == false)
+                alert("Error");
+         };
+
+         function fillHtmlWithFolder(rootFolder) {
+            var folder = getFolderByName(rootFolder, tree);
+
+            if (folder == null)
+                return false;
+            var childrens = folder.children;
+            
+            var fileJq = $("#file");
+            var folderJq = $("#folder");
+            
+            fileJq.empty();
+            folderJq.empty();
+
+            for (var i = childrens.length - 1; i >= 0; i--) {
+                var children = childrens[i];
+                var name = children.name;
+                if (children.type == "file") {
+                    var template =  '<div class="file-box">' +
+                                    '<div class="file">' +
+                                        '<a id="file' + i + '">' +
+                                            '<span class="corner"></span>' +
+                                            '<div class="icon">' +
+                                                '<i class="fa fa-file"></i>' +
+                                            '</div>' +
+                                            '<div class="file-name" style="tex">' +
+                                                name + 
+                                            '</div>' +
+                                        '</a>' +
+                                    '</div>' +
+                                '</div>';
+
+                    fileJq.append(template);
+
+                    $('#file' + i).on( "click", {name : name}, function(e) {
+                        var actualName = e.data.name;
+                        alert("do something with file : " + actualName);
+                    });
+                }
+                else {
+                    var template = '<li><a id="folder' + i + '"><i class="fa fa-folder"></i> ' + name + '</a></li>';
+
+                    folderJq.append(template);
+
+                    $('#folder' + i).on( "click",  {name : name}, function(e) {
+                        var actualName = e.data.name;
+
+                        fillHtmlWithFolder(actualName);
+                        console.log("fillHtmlWithFolder : " + actualName);
+                        $( "#backButton" ).unbind( "click", back );
+                        $('#backButton').bind( "click",  {actualNameBackButton : actualName}, back);
+                    });
+                }
+            }
+         };
+
+         var back = function(e) {
+            var actualName = e.data.actualNameBackButton;
+            console.log("getParentFolderByName of " + actualName);
+            var parent = getParentFolderByName(actualName, tree);
+            console.log("Parent :", parent);
+            if (parent != null) {
+                fillHtmlWithFolder(parent.name);
+                $("#backButton" ).unbind( "click", back );
+                $('#backButton').bind( "click",  {actualNameBackButton : parent.name}, back);
+            }            
+         }
+
+         function getFolderByName(name, actualTree) {
+
+            if (actualTree.name == name && actualTree.type == "folder")
+                return actualTree;
+
+            var childrens = actualTree.children;
+            for (var i = childrens.length - 1; i >= 0; i--) {
+                if (childrens[i].type == "folder")
+                {
+                    var toReturn = getFolderByName(name, childrens[i]);
+
+                    if (toReturn != null)
+                        return toReturn;
+                }
+            }
+            return null;
+         }
+
+         function getParentFolderByName(name, actualTree) {            
+            var childrensActualTree = actualTree.children;
+            for (var i = childrensActualTree.length - 1; i >= 0; i--) {
+                if (childrensActualTree[i].name == name)
+                {
+                    console.log("actualTree to return : " + actualTree.name);
+                    return (actualTree);
+                }
+            }
+            for (var i = childrensActualTree.length - 1; i >= 0; i--) {                
+                if (childrensActualTree[i].type == "folder")
+                {
+                    var toReturn = getParentFolderByName(name, childrensActualTree[i]);
+
+                    if (toReturn != null)
+                        return toReturn;
+                }
+            }
+            return null;
+         }
 
         $('.file-box').each(function() {
             animationHover(this, 'pulse');
