@@ -124,6 +124,7 @@
 <script src="{{ url_for('static', filename='js/plugins/pace/pace.min.js') }}"></script>
 
 <script>
+    verifyConnect();
     $(document).ready(function(){
         $("#logoutButton").on("click", function(){
             logout();                

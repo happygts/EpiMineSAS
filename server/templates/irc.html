@@ -81,8 +81,8 @@
 
                 </div>
             </div>
-        <div class="wrapper wrapper-content animated fadeInRight">
-            <iframe src="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=test|?#EpiMineSAS" style="border:0; width:100%; height:450px;"></iframe>
+        <div class="wrapper wrapper-content animated fadeInRight" id="mainWrapper">
+            <iframe src="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=|?#EpiMineSAS" style="border:0; width:100%; height:450px;"></iframe>
         </div>
         <div class="footer">
             <div>
@@ -111,6 +111,7 @@
     <!-- Jquery Validate -->
     <script src="{{ url_for('static', filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
     <script>
+        verifyConnect();
         $(document).ready(function(){
             $("#logoutButton").on("click", function(){
                 logout();                
