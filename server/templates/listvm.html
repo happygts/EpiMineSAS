@@ -42,8 +42,13 @@
                             <li ><a href="{{ url_for('createvm') }}">Create vm</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ url_for('listuser') }}"><i class="fa fa-flask"></i> <span class="nav-label">List user</span> </a>
+                    <li >
+                        <a href="{{ url_for('listuser') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Users</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li ><a href="{{ url_for('listuser') }}">List users</a></li>
+                            <li ><a href="{{ url_for('createuser') }}">Create user</a></li>
+                            <li ><a href="{{ url_for('listuser') }}">Edit user</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
