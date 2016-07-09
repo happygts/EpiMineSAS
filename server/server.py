@@ -4,6 +4,8 @@ import subprocess
 from flask import Flask, request, jsonify, render_template
 from script import connect, user_list, set_pwd, add_user
 
+import script
+
 """config = ConfigParser.ConfigParser()
 config.read('config.ini')
 DB_IP = config.get('Database', 'IP', 0)
@@ -120,7 +122,6 @@ def login():
 def createvm():
     return render_template('createvm.html')
 
-
 @app.route('/listvm', methods=['GET'])
 def listvm():
     return render_template('listvm.html')
@@ -132,6 +133,10 @@ def listuser():
 @app.route('/createuser', methods=['GET'])
 def createuser():
     return render_template('createuser.html')
+
+@app.route('/edituser/<username>', methods=['GET'])
+def edituser(username):
+    return render_template('editUser.html', username=username)
 
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
@@ -218,7 +223,13 @@ def get_list_vm():
 @app.route('/connect', methods=['POST'])
 def post_connect():
     inputs = check_params_json(request.get_json(), ['user', 'pwd'])
+<<<<<<< HEAD
     res = connect(inputs['user'], inputs['pwd'])
+=======
+    res = script.connect(inputs['user'], inputs['pwd'])
+    print(inputs)
+    print(res)
+>>>>>>> dd0d72373431400fd30a264fd70aec4795fe7dc2
     return json.dumps(res)
 
 
