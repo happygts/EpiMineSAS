@@ -3,6 +3,8 @@ import ConfigParser
 import subprocess
 from flask import Flask, request, jsonify, render_template
 
+import script
+
 """config = ConfigParser.ConfigParser()
 config.read('config.ini')
 DB_IP = config.get('Database', 'IP', 0)
@@ -212,9 +214,7 @@ def get_list_vm():
 @app.route('/connect', methods=['POST'])
 def post_connect():
     inputs = check_params_json(request.get_json(), ['user', 'pwd'])
-    res = {'token': 'TEST',
-            'ok' : '1',
-           'type': 'user'}
+    res = script.connect(inputs['user'], inputs['pwd'])
     print(inputs)
     print(res)
     return json.dumps(res)

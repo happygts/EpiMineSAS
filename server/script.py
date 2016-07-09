@@ -11,4 +11,4 @@ def connect(username, passwd):
     except subprocess.CalledProcessError:
         return "Wrong credentials"
     out=subprocess.check_output("klist", shell=True)
-    return json.dumps({'token': out, 'type': "user"})
+    return json.dumps({'token': out, 'ok': 1, 'type': "user"})
