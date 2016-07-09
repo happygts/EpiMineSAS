@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Wizards</title>
+    <title>SAS | User</title>
 
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
@@ -154,10 +154,14 @@
                 var passwordConfirmation = $( "#inputPassword" ).val();
                 
                 if (password == passwordConfirmation && password != null && password != "")
-                    httpPost('http://127.0.0.1:5000/change_pwd', {'token': sessionStorage.getItem("token"), 'user': user, 'pwd': password}, handleResponse);
+                    httpPost('http://127.0.0.1:5000/change_pwd', {'token': sessionStorage.getItem("token"), 'user': user, 'pwd': password}, endChange);
                 else
                     alert('Your two password must be the same');
             });
+
+            function endChange(data) {
+                console.log(data);
+            }
 
          });
      </script>

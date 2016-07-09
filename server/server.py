@@ -133,9 +133,9 @@ def listuser():
 def createuser():
     return render_template('createuser.html')
 
-@app.route('/edituser/<username>', methods=['GET'])
-def edituser(username):
-    return render_template('editUser.html', username=username)
+@app.route('/edituser/<user>', methods=['GET'])
+def edituser(user):
+    return render_template('editUser.html', username=user)
 
 @app.route('/list_group_doc', methods=['GET'])
 def get_list_group_doc():
