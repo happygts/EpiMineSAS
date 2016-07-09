@@ -134,7 +134,7 @@ def get_list_group_doc():
             {
                 'type': "folder",
                 'name': "folder2",
-                'folder2': [
+                'children': [
                     {
                         'type': "folder",
                         'name': "images",
