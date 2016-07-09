@@ -28,12 +28,12 @@
             <h3>Welcome to Epi-Mine SAS</h3>
             <form class="m-t" role="form" action="{{ url_for('index') }}">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Username" required="">
+                    <input id="username" type="email" class="form-control" placeholder="Username" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <input id="password" type="password" class="form-control" placeholder="Password" required="">
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <a id="connect" class="btn btn-primary block full-width m-b">Login</a>
             </form>
         </div>
     </div>
@@ -41,7 +41,35 @@
     <!-- Mainly scripts -->
     <script src="{{ url_for('static', filename='js/jquery-2.1.1.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='http.js') }}"></script>
 
+    <script>
+        $(document).ready(function(){
+            var username;
+            if (sessionStorage.getItem("email") != null)
+                window.location.href = 'index';
+            $("#connect").on("click", function() {
+                username = $("#username").val();
+                var password = $("#password").val();
+
+                httpPost('http://127.0.0.1:5000/connect', {'user': username, 'pwd': password}, connecting);                
+            });
+
+            function connecting(data){
+                var response = JSON.parse(data);
+                if (response.ok == "1")
+                {
+                    sessionStorage.setItem("email", username);
+                    sessionStorage.setItem("admin", (response.type == "user") ? 0 : 1);
+                    window.location.href = 'index';
+                }
+                else {
+                    alert("Mauvais mot de passe ou email");
+                }
+                console.log(response);
+            }
+        });
+    </script>
 </body>
 
 </html>

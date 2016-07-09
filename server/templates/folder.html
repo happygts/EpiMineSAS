@@ -57,7 +57,7 @@
                 <span class="m-r-sm text-muted welcome-message">Welcome to SAS</span>
             </li>
             <li>
-                <a href="{{ url_for('login') }}">
+                <a id="logoutButton">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
@@ -125,6 +125,9 @@
 
 <script>
     $(document).ready(function(){
+        $("#logoutButton").on("click", function(){
+            logout();                
+        });
         var dictionaryFolder;
         var tree;
 

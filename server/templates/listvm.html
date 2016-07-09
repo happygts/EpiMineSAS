@@ -57,7 +57,7 @@
                 <span class="m-r-sm text-muted welcome-message">Welcome to SAS</span>
             </li>
             <li>
-                <a href="{{ url_for('login') }}">
+                <a id="logoutButton">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
@@ -153,6 +153,10 @@
             httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
             $('#loading-example-btn').click(function () {
                 httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
+            });
+
+            $("#logoutButton").on("click", function(){
+                logout();                
             });
 
             function refreshList(data) {

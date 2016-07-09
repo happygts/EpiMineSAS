@@ -42,3 +42,9 @@ function handleResponse()
     var data = JSON.parse(this.responseText);
     console.log(data);
 }
+
+function logout() {
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("admin");
+    window.location.href = 'login';
+}

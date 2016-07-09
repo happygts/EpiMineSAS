@@ -86,6 +86,9 @@ def check_params_json(json, keys):
 
 # ALL
 
+@app.route('/', methods=['GET'])
+def root():
+    return render_template('login.html')
 
 @app.route('/courses', methods=['GET'])
 def courses():
@@ -186,7 +189,8 @@ def get_list_vm():
 def post_connect():
     inputs = check_params_json(request.get_json(), ['user', 'pwd'])
     res = {'token': 'TEST',
-           'type': 'admin//user?'}
+            'ok' : '1',
+           'type': 'user'}
     print(inputs)
     print(res)
     return json.dumps(res)

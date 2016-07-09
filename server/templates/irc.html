@@ -57,7 +57,7 @@
                 <span class="m-r-sm text-muted welcome-message">Welcome to SAS</span>
             </li>
             <li>
-                <a href="login">
+                <a id="logoutButton">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
@@ -111,6 +111,11 @@
     <!-- Jquery Validate -->
     <script src="{{ url_for('static', filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
     <script>
+        $(document).ready(function(){
+            $("#logoutButton").on("click", function(){
+                logout();                
+            });
+        });
      </script>
 </body>
 
