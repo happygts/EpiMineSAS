@@ -60,6 +60,7 @@
                 if (response.ok == "1")
                 {
                     sessionStorage.setItem("email", username);
+                    sessionStorage.setItem("token", response.token);
                     sessionStorage.setItem("admin", (response.type == "user") ? 0 : 1);
                     window.location.href = 'index';
                 }

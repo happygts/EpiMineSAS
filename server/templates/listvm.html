@@ -151,9 +151,9 @@
     <script>
         verifyConnect();
         $(document).ready(function(){
-            httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
+            httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': sessionStorage.getItem("token")}), refreshList);
             $('#loading-example-btn').click(function () {
-                httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': 'test'}), refreshList);
+                httpGet('http://127.0.0.1:5000/list_vm?' + encodeQueryData({'token': sessionStorage.getItem("token")}), refreshList);
             });
 
             $("#logoutButton").on("click", function(){

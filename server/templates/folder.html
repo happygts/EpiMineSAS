@@ -132,7 +132,7 @@
         var dictionaryFolder;
         var tree;
 
-        httpGet('http://127.0.0.1:5000/list_group_doc?' + encodeQueryData({'token': 'test'}), init);
+        httpGet('http://127.0.0.1:5000/list_group_doc?' + encodeQueryData({'token': sessionStorage.getItem("token")}), init);
 
         function init(data) {
             tree = JSON.parse(data).tree[0];

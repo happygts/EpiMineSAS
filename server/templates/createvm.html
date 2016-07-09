@@ -204,7 +204,7 @@
 
                 var ram = $( "#selectRam option:selected" ).text();
 
-                httpPost('http://127.0.0.1:5000/create_vm', {'token': 'test',
+                httpPost('http://127.0.0.1:5000/create_vm', {'token': sessionStorage.getItem("token"),
                          'os': os,
                          'ram': ram,
                          'proc': Coeur,
