@@ -133,7 +133,7 @@ def get_list_group_doc():
         'children': [
             {
                 'type': "folder",
-                'name': "cat",
+                'name': "folder2",
                 'folder2': [
                     {
                         'type': "folder",
@@ -170,15 +170,15 @@ def get_list_group_doc():
             {
                 'type': "file",
                 'name': "file4",
-            }
+            },
             {
                 'type': "file",
                 'name': "file5",
-            }
+            },
             {
                 'type': "file",
                 'name': "file6",
-            }
+            },
             {
                 'type': "file",
                 'name': "file7",
